@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+cd "$(dirname "$0")"
+
+export DECODER="${DECODER:-freq_split}"
+export LOSS_MODE="${LOSS_MODE:-freq_split_ssim_aware}"
+export LATENT_DIM="${LATENT_DIM:-256}"
+export TEMPORAL_CHANNELS="${TEMPORAL_CHANNELS:-128}"
+export BASE_CHANNELS="${BASE_CHANNELS:-64}"
+export DROPOUT="${DROPOUT:-0.25}"
+export WEIGHT_DECAY="${WEIGHT_DECAY:-1e-3}"
+export LR="${LR:-3e-4}"
+export GABOR_LOSS_WEIGHT="${GABOR_LOSS_WEIGHT:-0.0}"
+export FREQ_BLUR_SIGMA="${FREQ_BLUR_SIGMA:-0}"
+export FREQ_LOW_MODE="${FREQ_LOW_MODE:-hybrid}"
+export FREQ_TEMPLATE_ALPHA="${FREQ_TEMPLATE_ALPHA:-1e-3}"
+export FREQ_HYBRID_TEMPLATE_WEIGHT="${FREQ_HYBRID_TEMPLATE_WEIGHT:-0.5}"
+export FREQ_HIGH_RF_RADIUS="${FREQ_HIGH_RF_RADIUS:-0.0}"
+export FREQ_HIGH_RF_SOFTNESS="${FREQ_HIGH_RF_SOFTNESS:-2.0}"
+export CONSISTENCY_WEIGHT="${CONSISTENCY_WEIGHT:-0.02}"
+export SINGLE_REPEAT_LOSS_WEIGHT="${SINGLE_REPEAT_LOSS_WEIGHT:-0.02}"
+export RUN_NAME="${RUN_NAME:-rgc_freqsplit_lag${RESPONSE_LAG:-3}_h${HISTORY_BINS:-11}_seed${SEED:-1}}"
+
+bash run_rgc_frame_decoder.sh
